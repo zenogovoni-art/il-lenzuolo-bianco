@@ -3,33 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Il Lenzuolo Bianco — Ferrara</title>
+  <title>Il Lenzuolo Bianco — Lasciate Entrare il Sole</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:      #F5F0E8;
-      --dark:       #1C1C1A;
+      --cream:      #F7F2EA;
+      --linen:      #EDE4D4;
+      --lav:        #C4B5D4;
+      --lav-dk:     #8B7BA8;
+      --lav-pale:   #EDE8F5;
+      --dark:       #2C2835;
       --terra:      #B5714A;
-      --terra-lt:   #D4956E;
-      --sage:       #5A7A52;
-      --mid:        #6B6560;
+      --mid:        #7A706A;
       --white:      #FFFFFF;
       --serif:      'Playfair Display', Georgia, serif;
       --sans:       'Inter', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--cream);
       color: var(--dark);
       font-family: var(--sans);
       font-weight: 300;
-      line-height: 1.7;
+      line-height: 1.75;
       overflow-x: hidden;
     }
 
@@ -41,65 +42,91 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 48px;
+      padding: 18px 48px;
       transition: background .4s, backdrop-filter .4s;
     }
     nav.scrolled {
-      background: rgba(245,240,232,.92);
+      background: rgba(247,242,234,.94);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(181,113,74,.15);
+      border-bottom: 1px solid rgba(196,181,212,.2);
     }
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 1rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--white);
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      transition: background .3s;
+    }
+    nav.scrolled .nav-logo-img { background: var(--white); }
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-store {
+      font-family: var(--serif);
+      font-size: .85rem;
+      font-style: italic;
+      color: rgba(255,255,255,.9);
       transition: color .3s;
     }
-    nav.scrolled .nav-logo { color: var(--dark); }
+    .nav-event {
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      transition: color .3s;
+    }
+    nav.scrolled .nav-store { color: var(--dark); }
+    nav.scrolled .nav-event { color: var(--lav-dk); }
     .nav-links {
       display: flex;
-      gap: 36px;
+      gap: 32px;
       list-style: none;
     }
     .nav-links a {
-      font-size: .78rem;
+      font-size: .75rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.85);
+      color: rgba(255,255,255,.8);
       text-decoration: none;
       transition: color .3s;
     }
     nav.scrolled .nav-links a { color: var(--mid); }
-    .nav-links a:hover { color: var(--terra); }
+    .nav-links a:hover { color: var(--lav-dk); }
 
     /* ── HERO ── */
     #hero {
       position: relative;
       height: 100vh;
-      min-height: 620px;
+      min-height: 640px;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       overflow: hidden;
     }
-    #hero img.hero-bg {
+    .hero-bg {
       position: absolute;
       inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 40%;
+      object-position: center 35%;
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(28,28,26,.1) 0%,
-        rgba(28,28,26,.05) 40%,
-        rgba(28,28,26,.65) 100%
+        rgba(44,40,53,.15) 0%,
+        rgba(44,40,53,.05) 35%,
+        rgba(44,40,53,.7) 100%
       );
     }
     .hero-content {
@@ -108,351 +135,422 @@
       color: var(--white);
       padding: 0 24px 80px;
     }
-    .hero-eyebrow {
-      font-size: .72rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      opacity: .8;
-      margin-bottom: 16px;
+    .hero-presenter {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 8px 20px;
+      border: 1px solid rgba(255,255,255,.3);
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,.08);
+    }
+    .hero-presenter img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+    }
+    .hero-presenter span {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .85rem;
+      opacity: .9;
     }
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
       font-weight: 400;
-      line-height: 1.05;
-      margin-bottom: 24px;
+      line-height: 1.0;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 20px rgba(44,40,53,.3);
     }
     .hero-sub {
       font-size: .9rem;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       opacity: .75;
       margin-bottom: 40px;
     }
     .hero-cta {
       display: inline-block;
-      padding: 14px 40px;
-      border: 1px solid rgba(255,255,255,.6);
+      padding: 14px 44px;
+      background: rgba(196,181,212,.25);
+      border: 1px solid rgba(196,181,212,.6);
       color: var(--white);
       text-decoration: none;
-      font-size: .78rem;
-      letter-spacing: .14em;
+      font-size: .75rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
       transition: background .3s, border-color .3s;
     }
     .hero-cta:hover {
-      background: rgba(255,255,255,.15);
-      border-color: var(--white);
+      background: rgba(196,181,212,.45);
+      border-color: rgba(196,181,212,.9);
     }
-    .scroll-hint {
+    .scroll-line {
       position: absolute;
-      bottom: 28px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,.5);
-      font-size: .65rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      animation: bounce 2s infinite;
-    }
-    .scroll-hint::after {
-      content: '';
       width: 1px;
-      height: 40px;
-      background: rgba(255,255,255,.35);
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.0), rgba(255,255,255,.4));
+      animation: grow 2s ease-in-out infinite;
     }
-    @keyframes bounce {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50%      { transform: translateX(-50%) translateY(6px); }
+    @keyframes grow {
+      0%,100% { transform: translateX(-50%) scaleY(.5); opacity: .4; }
+      50%      { transform: translateX(-50%) scaleY(1); opacity: 1; }
     }
 
-    /* ── SECTIONS COMMON ── */
+    /* ── COMMONS ── */
     section { padding: 100px 0; }
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
     .section-label {
       font-size: .68rem;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--terra);
-      margin-bottom: 16px;
+      color: var(--lav-dk);
+      margin-bottom: 14px;
     }
     h2 {
       font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2rem, 3.8vw, 3rem);
       font-weight: 400;
       line-height: 1.2;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
-    h3 {
+    h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 8px; }
+    p { color: var(--mid); margin-bottom: 14px; }
+    .divider { width: 40px; height: 1px; background: var(--lav); margin-bottom: 28px; }
+
+    /* ── L'EVENTO ── */
+    #evento { background: var(--white); }
+    .evento-grid {
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .manifesto-block {
+      border-left: 2px solid var(--lav);
+      padding-left: 28px;
+      margin: 28px 0;
+    }
+    .manifesto-block p {
       font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 400;
-      margin-bottom: 10px;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 2;
+      color: var(--dark);
+      margin: 0;
     }
-    p { color: var(--mid); margin-bottom: 16px; }
-    .divider {
-      width: 48px; height: 1px;
-      background: var(--terra);
-      margin-bottom: 32px;
+    .evento-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: center top;
     }
 
-    /* ── CONCEPT ── */
-    #concept { background: var(--white); }
-    .concept-grid {
+    /* ── IL NEGOZIO ── */
+    #negozio {
+      background: var(--lav-pale);
+      position: relative;
+      overflow: hidden;
+    }
+    #negozio::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(196,181,212,.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .negozio-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
     }
-    .concept-img {
+    .logo-box {
+      text-align: center;
+      padding: 48px;
+      background: var(--white);
+      border-radius: 2px;
+    }
+    .logo-box img {
+      max-width: 260px;
       width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
     }
-    .manifesto-block {
-      border-left: 2px solid var(--terra);
-      padding-left: 32px;
-      margin: 32px 0;
+    .logo-box .logo-caption {
+      margin-top: 20px;
+      font-size: .75rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--lav-dk);
     }
-    .manifesto-block p {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.05rem;
-      line-height: 1.9;
-      color: var(--dark);
-      margin: 0;
+    .store-names {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--lav-dk);
+    }
+    .store-names::before, .store-names::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--lav);
+      width: 24px;
     }
 
+    /* ── SHOP ── */
+    #shop { background: var(--cream); }
+    .shop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 56px;
+    }
+    .shop-card {
+      background: var(--white);
+      overflow: hidden;
+      position: relative;
+    }
+    .shop-card-img {
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .shop-card:hover .shop-card-img { transform: scale(1.03); }
+    .shop-card-body {
+      padding: 32px 36px 36px;
+    }
+    .shop-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--lav-pale);
+      color: var(--lav-dk);
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .shop-card-body h3 { margin-bottom: 10px; }
+    .shop-card-body p { font-size: .92rem; }
+    .shop-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--lav-dk);
+      text-decoration: none;
+      border-bottom: 1px solid var(--lav);
+      padding-bottom: 2px;
+      transition: color .3s, border-color .3s;
+    }
+    .shop-cta:hover { color: var(--dark); border-color: var(--dark); }
+
     /* ── COME FUNZIONA ── */
-    #come-funziona { background: var(--cream); }
+    #come-funziona { background: var(--dark); color: var(--white); }
+    #come-funziona .section-label { color: var(--lav); }
+    #come-funziona h2 { color: var(--white); }
+    #come-funziona p { color: rgba(255,255,255,.55); }
+    #come-funziona .divider { background: var(--lav); }
     .steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
+      gap: 2px;
       margin-top: 56px;
     }
-    .step { text-align: center; }
+    .step {
+      padding: 40px 32px;
+      border: 1px solid rgba(196,181,212,.12);
+      text-align: center;
+      transition: background .3s;
+    }
+    .step:hover { background: rgba(196,181,212,.07); }
     .step-num {
       font-family: var(--serif);
       font-size: 3rem;
-      color: var(--terra);
+      color: var(--lav);
       opacity: .35;
       line-height: 1;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
-    .step h3 { font-size: 1.05rem; margin-bottom: 8px; }
-    .step p { font-size: .9rem; }
+    .step h3 { color: var(--white); font-size: 1rem; margin-bottom: 10px; }
 
     /* ── FULL IMAGE BREAK ── */
     .img-break {
-      height: 60vh;
+      height: 55vh;
       overflow: hidden;
       position: relative;
     }
     .img-break img {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 30%;
+      object-position: center 40%;
     }
     .img-break-caption {
       position: absolute;
-      bottom: 32px; left: 48px;
-      color: rgba(255,255,255,.75);
-      font-size: .75rem;
-      letter-spacing: .14em;
+      bottom: 28px; left: 48px;
+      color: rgba(255,255,255,.65);
+      font-size: .72rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
     }
 
     /* ── GALLERY ── */
-    #gallery { background: var(--white); padding: 100px 0; }
+    #gallery { background: var(--white); }
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: auto;
-      gap: 12px;
+      gap: 10px;
       margin-top: 56px;
     }
+    .gallery-grid div { overflow: hidden; }
     .gallery-grid img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform .5s ease, filter .4s ease;
-      filter: brightness(.97);
+      transition: transform .5s ease, filter .4s;
+      filter: brightness(.96);
     }
-    .gallery-grid img:hover {
-      transform: scale(1.02);
-      filter: brightness(1.03);
-    }
-    .g1  { grid-column: 1 / 8;  grid-row: 1; aspect-ratio: 16/9; overflow:hidden; }
-    .g2  { grid-column: 8 / 13; grid-row: 1; aspect-ratio: 4/5;  overflow:hidden; }
-    .g3  { grid-column: 1 / 5;  grid-row: 2; aspect-ratio: 4/5;  overflow:hidden; }
-    .g4  { grid-column: 5 / 9;  grid-row: 2; aspect-ratio: 4/5;  overflow:hidden; }
-    .g5  { grid-column: 9 / 13; grid-row: 2; aspect-ratio: 4/5;  overflow:hidden; }
-    .g6  { grid-column: 1 / 6;  grid-row: 3; aspect-ratio: 16/9; overflow:hidden; }
-    .g7  { grid-column: 6 / 13; grid-row: 3; aspect-ratio: 16/9; overflow:hidden; }
+    .gallery-grid img:hover { transform: scale(1.04); filter: brightness(1.02); }
+    .g1 { grid-column: 1/8;  aspect-ratio: 16/9; }
+    .g2 { grid-column: 8/13; aspect-ratio: 4/5; }
+    .g3 { grid-column: 1/5;  aspect-ratio: 4/5; }
+    .g4 { grid-column: 5/9;  aspect-ratio: 4/5; }
+    .g5 { grid-column: 9/13; aspect-ratio: 4/5; }
+    .g6 { grid-column: 1/6;  aspect-ratio: 16/9; }
+    .g7 { grid-column: 6/13; aspect-ratio: 16/9; }
 
-    /* ── PERCHÉ ── */
-    #perche { background: var(--dark); color: var(--white); }
-    #perche .section-label { color: var(--terra-lt); }
-    #perche h2 { color: var(--white); }
-    #perche p  { color: rgba(255,255,255,.6); }
-    .numeri {
+    /* ── PARTNER ── */
+    #partner { background: var(--linen); }
+    .partner-intro {
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+    .benefit-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
-      margin: 56px 0;
-    }
-    .numero-box {
-      padding: 48px 40px;
-      border: 1px solid rgba(255,255,255,.08);
-      text-align: center;
-    }
-    .numero-box:hover { background: rgba(181,113,74,.08); }
-    .numero-val {
-      font-family: var(--serif);
-      font-size: 3.5rem;
-      color: var(--terra-lt);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .numero-label {
-      font-size: .8rem;
-      letter-spacing: .1em;
-      color: rgba(255,255,255,.5);
-      text-transform: uppercase;
-    }
-    .benefit-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 56px;
     }
     .benefit {
-      padding: 32px;
-      border: 1px solid rgba(255,255,255,.08);
+      background: var(--white);
+      padding: 40px 32px;
+      transition: background .3s;
     }
-    .benefit-icon {
-      font-size: 1.5rem;
-      margin-bottom: 12px;
-    }
-    .benefit h3 {
-      font-size: 1rem;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-    .benefit p { font-size: .88rem; }
-
-    /* ── CHI SIAMO ── */
-    #chi-siamo { background: var(--cream); }
-    .chi-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .chi-img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: center top;
-    }
-    .street-dinner-badge {
-      display: inline-block;
-      padding: 6px 16px;
-      background: var(--terra);
-      color: var(--white);
-      font-size: .7rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
+    .benefit:hover { background: var(--lav-pale); }
+    .benefit-icon { font-size: 1.4rem; margin-bottom: 14px; }
+    .benefit h3 { font-size: .95rem; margin-bottom: 8px; }
+    .benefit p  { font-size: .88rem; }
 
     /* ── CONTATTI ── */
     #contatti { background: var(--white); text-align: center; }
-    #contatti h2 { margin-bottom: 16px; }
+    #contatti h2 { margin-bottom: 14px; }
     #contatti > .container > p {
-      max-width: 540px;
-      margin: 0 auto 48px;
-      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto 56px;
     }
-    .contact-grid {
+    .contact-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
-      margin-bottom: 64px;
+      margin-bottom: 56px;
     }
     .contact-box {
-      padding: 40px 32px;
-      background: var(--cream);
-      text-align: center;
+      padding: 36px 24px;
+      background: var(--lav-pale);
     }
-    .contact-box .contact-icon {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
+    .contact-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .contact-box h3 {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--lav-dk);
+      margin-bottom: 6px;
+      font-family: var(--sans);
+      font-weight: 500;
     }
-    .contact-box h3 { font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
     .contact-box a, .contact-box p {
-      font-size: .95rem;
-      color: var(--terra);
+      font-size: .92rem;
+      color: var(--dark);
       text-decoration: none;
       margin: 0;
     }
-    .contact-box a:hover { text-decoration: underline; }
+    .contact-box a:hover { color: var(--lav-dk); }
     .cta-btn {
       display: inline-block;
-      padding: 18px 56px;
-      background: var(--terra);
+      padding: 16px 52px;
+      background: var(--lav-dk);
       color: var(--white);
       text-decoration: none;
-      font-size: .82rem;
+      font-size: .78rem;
       letter-spacing: .16em;
       text-transform: uppercase;
       transition: background .3s;
     }
-    .cta-btn:hover { background: #9A5E3A; }
+    .cta-btn:hover { background: #7A6A96; }
 
     /* ── FOOTER ── */
     footer {
       background: var(--dark);
-      color: rgba(255,255,255,.35);
-      text-align: center;
-      padding: 32px 48px;
-      font-size: .75rem;
-      letter-spacing: .08em;
+      padding: 36px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    footer strong { color: rgba(255,255,255,.6); }
+    footer p {
+      color: rgba(255,255,255,.3);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      margin: 0;
+    }
+    footer .footer-brand {
+      color: rgba(255,255,255,.55);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .85rem;
+    }
+    footer .footer-credit {
+      font-size: .65rem;
+      color: rgba(255,255,255,.2);
+      text-align: right;
+    }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
+    @media (max-width: 960px) {
+      nav { padding: 14px 24px; }
       .nav-links { display: none; }
       .container { padding: 0 24px; }
       section { padding: 72px 0; }
-      .concept-grid, .chi-grid { grid-template-columns: 1fr; gap: 40px; }
-      .concept-img, .chi-img { aspect-ratio: 16/9; }
+      .evento-grid, .negozio-grid { grid-template-columns: 1fr; gap: 40px; }
+      .evento-img { aspect-ratio: 16/9; }
+      .logo-box { padding: 32px; }
+      .shop-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr 1fr; }
-      .numeri { grid-template-columns: 1fr; }
-      .benefit-list { grid-template-columns: 1fr; }
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
-      .g1,.g2,.g3,.g4,.g5,.g6,.g7 {
-        grid-column: auto; grid-row: auto;
-        aspect-ratio: 4/3;
-      }
-      .contact-grid { grid-template-columns: 1fr; }
+      .benefit-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .g1,.g2,.g3,.g4,.g5,.g6,.g7 { grid-column: auto; aspect-ratio: 4/3; }
+      .contact-strip { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      footer .footer-credit { text-align: center; }
     }
-    @media (max-width: 560px) {
+    @media (max-width: 540px) {
       .steps { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.6rem; }
     }
   </style>
 </head>
@@ -460,41 +558,51 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#hero" class="nav-logo">Il Lenzuolo Bianco</a>
+  <a href="#hero" class="nav-brand">
+    <img class="nav-logo-img" src="4643a024-af39-440f-845b-18b118108b3a.jpg" alt="Lasciate Entrare il Sole" />
+    <div class="nav-brand-text">
+      <span class="nav-store">Lasciate Entrare il Sole</span>
+      <span class="nav-event">presenta · Il Lenzuolo Bianco</span>
+    </div>
+  </a>
   <ul class="nav-links">
-    <li><a href="#concept">Il concept</a></li>
-    <li><a href="#come-funziona">Come funziona</a></li>
+    <li><a href="#evento">L'evento</a></li>
+    <li><a href="#negozio">Il negozio</a></li>
+    <li><a href="#shop">Shop the event</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#perche">Per i partner</a></li>
     <li><a href="#contatti">Contatti</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <img class="hero-bg" src="3.png" alt="Il Lenzuolo Bianco — veduta aerea sottomura Ferrara" />
+  <img class="hero-bg" src="Gemini_Generated_Image_27kvij27kvij27kv.png" alt="Il Lenzuolo Bianco alle mura di Ferrara" />
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Ferrara — Sottomura — Giugno 2026</p>
+    <div class="hero-presenter">
+      <img src="4643a024-af39-440f-845b-18b118108b3a.jpg" alt="logo" />
+      <span>Lasciate Entrare il Sole presenta</span>
+    </div>
     <h1 class="hero-title">Il Lenzuolo<br>Bianco</h1>
-    <p class="hero-sub">Un mercoledì sera. Un prato. Un lenzuolo. Nient'altro.</p>
-    <a href="#concept" class="hero-cta">Scopri il progetto</a>
+    <p class="hero-sub">Ferrara · Sottomura · Mercoledì di giugno 2026 · Ore 19.00</p>
+    <a href="#evento" class="hero-cta">Scopri il progetto</a>
   </div>
-  <div class="scroll-hint"></div>
+  <div class="scroll-line"></div>
 </section>
 
-<!-- CONCEPT -->
-<section id="concept">
+<!-- L'EVENTO -->
+<section id="evento">
   <div class="container">
-    <div class="concept-grid">
+    <div class="evento-grid">
       <div>
-        <p class="section-label">Il concept</p>
+        <p class="section-label">L'evento</p>
         <div class="divider"></div>
-        <h2>Un flash mob che<br><em>nessuno ha dimenticato.</em></h2>
-        <p>Il Lenzuolo Bianco è un evento gratuito, spontaneo, replicabile. Ogni mercoledì di giugno, all'imbrunire, chi vuole si ritrova sul prato del sottomura con un lenzuolo bianco, qualcosa da bere, qualcosa da mangiare, la propria musica.</p>
-        <p>Nessun palco. Nessun biglietto. Nessun programma. Solo persone che scelgono di stare bene insieme — semplicemente.</p>
+        <h2>Un mercoledì sera.<br>Un prato. Un lenzuolo.<br><em>Nient'altro.</em></h2>
+        <p>Il Lenzuolo Bianco è un evento flash mob gratuito e spontaneo che si tiene ogni mercoledì di giugno all'imbrunire, sul prato del sottomura di Ferrara. Nessun biglietto, nessuna prenotazione, nessun programma.</p>
+        <p>Ognuno porta il proprio lenzuolo, qualcosa da bere, qualcosa da mangiare, la propria musica. Si stende sul prato, si incontra il vicino di lenzuolo, si scambia un sorso e una canzone.</p>
         <div class="manifesto-block">
-          <p>Porta un lenzuolo bianco, grande, vecchio, meglio se di canapa.<br>
+          <p>Porta un lenzuolo bianco, grande, vecchio,<br>
+          meglio se di canapa.<br>
           Porta qualcosa da bere, freddo.<br>
           Porta qualcosa da mangiare, buono.<br>
           Porta la tua musica. Non troppo alta.<br>
@@ -502,9 +610,67 @@
           Conosci il tuo vicino di lenzuolo.<br><br>
           <strong>Il resto, inventalo.</strong></p>
         </div>
+        <p style="font-size:.85rem; color: var(--lav-dk); margin-top: 8px;">Prima di andare, lascia il posto come lo hai trovato.</p>
       </div>
       <div>
-        <img class="concept-img" src="8.png" alt="Il Lenzuolo Bianco — fotografo alle mura" />
+        <img class="evento-img" src="8.png" alt="Il Lenzuolo Bianco — fotografo alle mura" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IL NEGOZIO -->
+<section id="negozio">
+  <div class="container">
+    <div class="negozio-grid">
+      <div class="logo-box">
+        <img src="4643a024-af39-440f-845b-18b118108b3a.jpg" alt="Lasciate Entrare il Sole — logo" />
+        <p class="logo-caption">Ferrara · Concept Store</p>
+      </div>
+      <div>
+        <p class="section-label">Chi organizza</p>
+        <div class="divider"></div>
+        <h2>Lasciate<br>Entrare il Sole.</h2>
+        <div class="store-names">Eleonora &amp; Chiara</div>
+        <p>Un concept store pensato e creato da due donne, dedicato alle donne. Un luogo dove la cura di sé si intreccia con la bellezza del quotidiano — oggetti scelti con attenzione, materiali naturali, profumi, tessuti, piccoli gesti che diventano rituali.</p>
+        <p>Il Lenzuolo Bianco nasce dalla stessa filosofia del negozio: la semplicità come forma di stile, la condivisione come gesto di cura, la bellezza che non ha bisogno di spiegarsi.</p>
+        <p>L'evento porta nel sottomura di Ferrara l'anima di Lasciate Entrare il Sole — e la porta a chiunque voglia farne parte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL IMAGE BREAK -->
+<div class="img-break">
+  <img src="3.png" alt="Veduta aerea — Il Lenzuolo Bianco alle mura di Ferrara" />
+  <span class="img-break-caption">Sottomura di Ferrara — lenzuola sul prato — giugno 2026</span>
+</div>
+
+<!-- SHOP THE EVENT -->
+<section id="shop">
+  <div class="container">
+    <p class="section-label">Shop the event</p>
+    <div class="divider"></div>
+    <h2>Tutto quello che ti serve<br><em>lo trovi da noi.</em></h2>
+    <p style="max-width:560px">Da Lasciate Entrare il Sole trovi il lenzuolo giusto per la serata — e il look con cui portarlo. Vieni in negozio, racconta come immagini il tuo mercoledì sul prato, e uscirai pronta.</p>
+    <div class="shop-grid">
+      <div class="shop-card">
+        <img class="shop-card-img" src="7.png" alt="Lenzuolo di canapa — texture" />
+        <div class="shop-card-body">
+          <span class="shop-tag">Il lenzuolo</span>
+          <h3>Lenzuola di canapa e lino naturale</h3>
+          <p>Il lenzuolo perfetto per la serata lo trovi da noi. Tessuti naturali, canapa grezza, lino antico. Pezzi selezionati uno a uno — ognuno con la sua storia, ognuno già bello da portare sul prato.</p>
+          <a href="#contatti" class="shop-cta">Vieni a sceglierlo →</a>
+        </div>
+      </div>
+      <div class="shop-card">
+        <img class="shop-card-img" src="Gemini_Generated_Image_c2m2vgc2m2vgc2m2.png" alt="Il look per l'evento — Lasciate Entrare il Sole" />
+        <div class="shop-card-body">
+          <span class="shop-tag">Il look</span>
+          <h3>L'outfit per il tuo mercoledì sera</h3>
+          <p>Colori naturali, tessuti che respirano, uno stile che non si sforza. Da Lasciate Entrare il Sole trovi anche il look pensato per l'evento — comodo, autentico, bello senza esagerare. Come l'idea stessa del Lenzuolo Bianco.</p>
+          <a href="#contatti" class="shop-cta">Scopri il negozio →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -515,22 +681,22 @@
   <div class="container">
     <p class="section-label">Come funziona</p>
     <div class="divider"></div>
-    <h2>Quattro mosse.<br><em>Una serata indimenticabile.</em></h2>
+    <h2>Quattro mosse.<br><em>Una serata che non dimentichi.</em></h2>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h3>Ci si dà appuntamento</h3>
-        <p>Ogni mercoledì di giugno, ore 19.00. Sottomura di Ferrara, prato esterno. Nessuna registrazione richiesta.</p>
+        <h3>Passa da noi</h3>
+        <p>Vieni da Lasciate Entrare il Sole. Scegli il tuo lenzuolo e il tuo look. Esci pronta per il mercoledì.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h3>Si porta il lenzuolo</h3>
-        <p>Bianco, grande, meglio se di canapa. Trovato in soffitta o al mercatino dell'antiquariato. Con la sua storia.</p>
+        <h3>Ci si ritrova</h3>
+        <p>Ogni mercoledì di giugno, ore 19.00. Sottomura di Ferrara, prato esterno. Nessuna registrazione.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h3>Ognuno porta il suo</h3>
-        <p>Da bere, da mangiare, musica. Ogni lenzuolo è un mondo diverso — si condivide con il vicino se si vuole.</p>
+        <h3>Ognuna porta il suo</h3>
+        <p>Da bere, da mangiare, musica. Ogni lenzuolo è un mondo. Si condivide con la vicina se si vuole.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
@@ -540,12 +706,6 @@
     </div>
   </div>
 </section>
-
-<!-- FULL IMAGE BREAK 1 -->
-<div class="img-break">
-  <img src="5.png" alt="Condivisione sul lenzuolo" />
-  <span class="img-break-caption">Sottomura di Ferrara — giugno</span>
-</div>
 
 <!-- GALLERY -->
 <section id="gallery">
@@ -558,8 +718,8 @@
     <div class="gallery-grid">
       <div class="g1"><img src="1.png" alt="Gruppo in arrivo con i lenzuoli" /></div>
       <div class="g2"><img src="6.png" alt="Relax sul lenzuolo" /></div>
-      <div class="g3"><img src="7.png" alt="Texture del lenzuolo di canapa" /></div>
-      <div class="g4"><img src="2.png" alt="Still life sul lenzuolo" /></div>
+      <div class="g3"><img src="2.png" alt="Still life sul lenzuolo" /></div>
+      <div class="g4"><img src="5.png" alt="Condivisione tra lenzuoli" /></div>
       <div class="g5"><img src="4.png" alt="Dettagli: musica, vino, cibo" /></div>
       <div class="g6"><img src="10.png" alt="Punto informativo" /></div>
       <div class="g7"><img src="9.png" alt="Arrivo all'imbrunire" /></div>
@@ -567,74 +727,30 @@
   </div>
 </section>
 
-<!-- PERCHÉ — PARTNER -->
-<section id="perche">
+<!-- PARTNER -->
+<section id="partner">
   <div class="container">
     <p class="section-label">Per i partner</p>
     <div class="divider"></div>
-    <h2>Perché essere<br><em>parte di questo.</em></h2>
-    <p style="max-width:580px">Il Lenzuolo Bianco non è un evento da sponsorizzare con un banner. È un format autentico, in cui i partner condividono un'identità — quella della semplicità, della qualità, del bello senza rumore.</p>
-
-    <div class="numeri">
-      <div class="numero-box">
-        <div class="numero-val">30+</div>
-        <div class="numero-label">lenzuoli alla prima edizione</div>
-      </div>
-      <div class="numero-box">
-        <div class="numero-val">ogni<br>mercoledì</div>
-        <div class="numero-label">di giugno — cadenza fissa</div>
-      </div>
-      <div class="numero-box">
-        <div class="numero-val">∞</div>
-        <div class="numero-label">contenuto user-generated</div>
-      </div>
+    <div class="partner-intro">
+      <h2>Perché essere parte<br><em>di questo progetto.</em></h2>
+      <p>Il Lenzuolo Bianco non cerca sponsor con banner. Cerca partner che condividano un'identità — semplicità, qualità, cura del bello. Se i tuoi valori parlano questa lingua, c'è un lenzuolo sul prato che ti aspetta.</p>
     </div>
-
-    <div class="benefit-list">
+    <div class="benefit-grid">
       <div class="benefit">
         <div class="benefit-icon">◈</div>
         <h3>Visibilità autentica</h3>
-        <p>Il tuo prodotto o brand non è un'interruzione — è parte dell'esperienza. Sul lenzuolo, nelle mani delle persone, nei contenuti che condividono spontaneamente.</p>
+        <p>Il tuo brand non interrompe l'esperienza — ne è parte. Sui lenzuoli, nelle mani delle persone, nei contenuti condivisi spontaneamente.</p>
       </div>
       <div class="benefit">
         <div class="benefit-icon">◈</div>
         <h3>Contenuto fotografico</h3>
-        <p>Ogni edizione produce materiale visivo professionale — ambientato nelle mura di Ferrara, con luce naturale e persone reali. Un patrimonio condiviso.</p>
+        <p>Ogni edizione produce materiale visivo straordinario — mura di Ferrara, luce del tramonto, persone reali. Un patrimonio condiviso tra tutti i partner.</p>
       </div>
       <div class="benefit">
         <div class="benefit-icon">◈</div>
-        <h3>Associazione valoriale</h3>
-        <p>Semplicità, qualità, comunità, rispetto del luogo. Se questi sono anche i tuoi valori, Il Lenzuolo Bianco è la tua casa.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">◈</div>
-        <h3>Un format scalabile</h3>
-        <p>Nato a Ferrara, destinato a crescere. Essere partner della prima edizione significa essere presenti all'inizio di qualcosa che può andare ovunque.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FULL IMAGE BREAK 2 -->
-<div class="img-break" style="height:50vh">
-  <img src="9.png" alt="Imbrunire alle mura" style="object-position: center center;" />
-</div>
-
-<!-- CHI SIAMO -->
-<section id="chi-siamo">
-  <div class="container">
-    <div class="chi-grid">
-      <div>
-        <img class="chi-img" src="2.png" alt="Sul lenzuolo" />
-      </div>
-      <div>
-        <p class="section-label">Chi lo ha ideato</p>
-        <div class="divider"></div>
-        <span class="street-dinner-badge">Dall'ideatore di Street Dinner</span>
-        <h2>Zeno Govoni,<br><em>albergatore e sognatore.</em></h2>
-        <p>Zeno Govoni è l'ideatore di <strong>Street Dinner</strong> — il format di cena itinerante a sorpresa che ha portato Ferrara su testate nazionali e internazionali per 6 edizioni consecutive, con centinaia di partecipanti e sold out in poche ore.</p>
-        <p>Il Lenzuolo Bianco nasce dalla stessa visione: creare momenti di connessione autentica tra persone, usando la città come palcoscenico e la semplicità come linguaggio.</p>
-        <p>Titolare dell'<strong>Hotel Annunziata</strong> di Ferrara, Zeno porta in ogni progetto la cura per l'ospitalità, il senso estetico e la capacità di costruire comunità intorno a un'idea.</p>
+        <h3>Un format che cresce</h3>
+        <p>Nato a Ferrara, destinato ad espandersi. Essere presenti alla prima edizione significa essere all'inizio di qualcosa.</p>
       </div>
     </div>
   </div>
@@ -643,36 +759,40 @@
 <!-- CONTATTI -->
 <section id="contatti">
   <div class="container">
-    <p class="section-label">Parliamoci</p>
-    <div class="divider" style="margin: 0 auto 32px;"></div>
+    <p class="section-label">Scrivici</p>
+    <div class="divider" style="margin: 0 auto 28px;"></div>
     <h2>Vuoi essere parte<br><em>del Lenzuolo Bianco?</em></h2>
-    <p>Che tu sia un produttore di vino naturale, un'azienda agricola, un artigiano, un brand di lifestyle o semplicemente qualcuno che crede in questa idea — scriviamo.</p>
-
-    <div class="contact-grid">
+    <p>Che tu voglia portare il tuo lenzuolo sul prato, collaborare come partner, o semplicemente saperne di più — siamo qui.</p>
+    <div class="contact-strip">
       <div class="contact-box">
         <div class="contact-icon">✉</div>
-        <h3>Email</h3>
+        <h3>Lasciate Entrare il Sole</h3>
         <a href="mailto:zenogovoni@annunziata.it">zenogovoni@annunziata.it</a>
       </div>
       <div class="contact-box">
         <div class="contact-icon">📍</div>
-        <h3>Dove</h3>
-        <p>Sottomura di Ferrara<br>Prato esterno — lato Rampari</p>
+        <h3>L'evento</h3>
+        <p>Sottomura di Ferrara<br>Prato esterno · lato Rampari</p>
       </div>
       <div class="contact-box">
         <div class="contact-icon">📅</div>
         <h3>Quando</h3>
-        <p>Mercoledì di giugno 2026<br>Ore 19.00 — all'imbrunire</p>
+        <p>Mercoledì di giugno 2026<br>Dalle ore 19.00</p>
       </div>
     </div>
-
-    <a href="mailto:zenogovoni@annunziata.it" class="cta-btn">Scrivici per collaborare</a>
+    <a href="mailto:zenogovoni@annunziata.it" class="cta-btn">Scrivici</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p><strong>Il Lenzuolo Bianco</strong> — Ferrara, giugno 2026 &nbsp;·&nbsp; Un progetto di Zeno Govoni &nbsp;·&nbsp; <strong>#illenznuolobianco</strong></p>
+  <p class="footer-brand">Lasciate Entrare il Sole · Ferrara</p>
+  <p style="color:rgba(255,255,255,.2); font-size:.65rem; letter-spacing:.06em">
+    #illenznuolobianco
+  </p>
+  <p class="footer-credit">
+    Il Lenzuolo Bianco è un progetto ideato da Zeno Govoni
+  </p>
 </footer>
 
 <script>
