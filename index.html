@@ -3,25 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Il Lenzuolo Bianco — Lasciate Entrare il Sole</title>
+  <title>Il Lenzuolo Bianco — Lasciate Entrare il Sole · Ferrara</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:      #F7F2EA;
-      --linen:      #EDE4D4;
-      --lav:        #C4B5D4;
-      --lav-dk:     #8B7BA8;
-      --lav-pale:   #EDE8F5;
-      --dark:       #2C2835;
-      --terra:      #B5714A;
-      --mid:        #7A706A;
+      /* palette store — dalla libellula */
+      --green:      #3D7A58;   /* corpo della libellula */
+      --green-lt:   #5A9A74;
+      --slate:      #8A96A6;   /* calligrafia del logo */
+      --slate-lt:   #B8C4D0;
+
+      /* palette hotel */
+      --hotel-grey: #8C8C8C;
+      --hotel-dark: #1E1E1E;
+
+      /* neutri */
+      --cream:      #F6F1E9;
+      --linen:      #EDE6D8;
       --white:      #FFFFFF;
-      --serif:      'Playfair Display', Georgia, serif;
-      --sans:       'Inter', system-ui, sans-serif;
+      --dark:       #2A2826;
+      --mid:        #6B6560;
+      --terra:      #B5714A;   /* terracotta delle mura */
+
+      /* tipografia */
+      --serif:  'Cormorant Garamond', Georgia, serif;   /* store / evento */
+      --sans:   'DM Sans', system-ui, sans-serif;       /* hotel / corpo */
     }
 
     html { scroll-behavior: smooth; }
@@ -30,11 +40,14 @@
       color: var(--dark);
       font-family: var(--sans);
       font-weight: 300;
+      font-size: 16px;
       line-height: 1.75;
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    /* ════════════════════════════════
+       NAV
+    ════════════════════════════════ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -42,13 +55,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 48px;
+      padding: 16px 48px;
       transition: background .4s, backdrop-filter .4s;
     }
     nav.scrolled {
-      background: rgba(247,242,234,.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(196,181,212,.2);
+      background: rgba(246,241,233,.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(138,150,166,.15);
     }
     .nav-brand {
       display: flex;
@@ -57,76 +70,65 @@
       text-decoration: none;
     }
     .nav-logo-img {
-      width: 42px;
-      height: 42px;
+      width: 40px; height: 40px;
       object-fit: contain;
       border-radius: 50%;
-      background: rgba(255,255,255,.15);
+      background: rgba(255,255,255,.12);
       transition: background .3s;
     }
     nav.scrolled .nav-logo-img { background: var(--white); }
-    .nav-brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
+    .nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
     .nav-store {
       font-family: var(--serif);
-      font-size: .85rem;
       font-style: italic;
-      color: rgba(255,255,255,.9);
+      font-size: .95rem;
+      color: rgba(255,255,255,.92);
       transition: color .3s;
     }
     .nav-event {
-      font-size: .6rem;
-      letter-spacing: .18em;
+      font-family: var(--sans);
+      font-size: .58rem;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.55);
+      color: rgba(255,255,255,.5);
       transition: color .3s;
     }
     nav.scrolled .nav-store { color: var(--dark); }
-    nav.scrolled .nav-event { color: var(--lav-dk); }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
+    nav.scrolled .nav-event { color: var(--green); }
+    .nav-links { display: flex; gap: 30px; list-style: none; }
     .nav-links a {
-      font-size: .75rem;
+      font-family: var(--sans);
+      font-size: .72rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.8);
+      color: rgba(255,255,255,.75);
       text-decoration: none;
       transition: color .3s;
     }
     nav.scrolled .nav-links a { color: var(--mid); }
-    .nav-links a:hover { color: var(--lav-dk); }
+    .nav-links a:hover { color: var(--green); }
 
-    /* ── HERO ── */
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
     #hero {
       position: relative;
-      height: 100vh;
-      min-height: 640px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
+      height: 100vh; min-height: 640px;
+      display: flex; align-items: flex-end; justify-content: center;
       overflow: hidden;
     }
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 35%;
+      object-fit: cover; object-position: center 35%;
     }
     .hero-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(44,40,53,.15) 0%,
-        rgba(44,40,53,.05) 35%,
-        rgba(44,40,53,.7) 100%
+        rgba(42,40,38,.12) 0%,
+        rgba(42,40,38,.04) 30%,
+        rgba(42,40,38,.72) 100%
       );
     }
     .hero-content {
@@ -139,291 +141,276 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 20px;
-      padding: 8px 20px;
-      border: 1px solid rgba(255,255,255,.3);
+      margin-bottom: 22px;
+      padding: 7px 20px;
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.07);
       backdrop-filter: blur(6px);
-      background: rgba(255,255,255,.08);
     }
     .hero-presenter img {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-      border-radius: 50%;
-      background: rgba(255,255,255,.2);
+      width: 26px; height: 26px;
+      object-fit: contain; border-radius: 50%;
+      background: rgba(255,255,255,.15);
     }
     .hero-presenter span {
       font-family: var(--serif);
       font-style: italic;
-      font-size: .85rem;
+      font-size: .9rem;
       opacity: .9;
     }
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(3.2rem, 7vw, 6.5rem);
-      font-weight: 400;
+      font-size: clamp(3.4rem, 7.5vw, 7rem);
+      font-weight: 300;
       line-height: 1.0;
       margin-bottom: 20px;
-      text-shadow: 0 2px 20px rgba(44,40,53,.3);
+      letter-spacing: .01em;
     }
     .hero-sub {
-      font-size: .9rem;
-      letter-spacing: .1em;
-      opacity: .75;
-      margin-bottom: 40px;
+      font-family: var(--sans);
+      font-size: .82rem;
+      letter-spacing: .12em;
+      opacity: .7;
+      margin-bottom: 44px;
     }
     .hero-cta {
       display: inline-block;
-      padding: 14px 44px;
-      background: rgba(196,181,212,.25);
-      border: 1px solid rgba(196,181,212,.6);
+      padding: 13px 44px;
+      border: 1px solid rgba(61,122,88,.7);
+      background: rgba(61,122,88,.18);
       color: var(--white);
       text-decoration: none;
-      font-size: .75rem;
-      letter-spacing: .16em;
+      font-family: var(--sans);
+      font-size: .72rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
       transition: background .3s, border-color .3s;
     }
-    .hero-cta:hover {
-      background: rgba(196,181,212,.45);
-      border-color: rgba(196,181,212,.9);
-    }
+    .hero-cta:hover { background: rgba(61,122,88,.38); border-color: rgba(61,122,88,1); }
     .scroll-line {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
+      position: absolute; bottom: 0; left: 50%;
       transform: translateX(-50%);
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, rgba(255,255,255,.0), rgba(255,255,255,.4));
-      animation: grow 2s ease-in-out infinite;
+      width: 1px; height: 56px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.35));
+      animation: fade 2.2s ease-in-out infinite;
     }
-    @keyframes grow {
-      0%,100% { transform: translateX(-50%) scaleY(.5); opacity: .4; }
-      50%      { transform: translateX(-50%) scaleY(1); opacity: 1; }
+    @keyframes fade {
+      0%,100% { opacity: .3; } 50% { opacity: 1; }
     }
 
-    /* ── COMMONS ── */
+    /* ════════════════════════════════
+       COMMONS
+    ════════════════════════════════ */
     section { padding: 100px 0; }
     .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
-    .section-label {
-      font-size: .68rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--lav-dk);
-      margin-bottom: 14px;
-    }
-    h2 {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.8vw, 3rem);
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-    h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 8px; }
-    p { color: var(--mid); margin-bottom: 14px; }
-    .divider { width: 40px; height: 1px; background: var(--lav); margin-bottom: 28px; }
 
-    /* ── L'EVENTO ── */
+    .label-store {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .label-hotel {
+      font-family: var(--sans);
+      font-size: .65rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--hotel-grey);
+      margin-bottom: 12px;
+    }
+    h2.store {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 22px;
+      letter-spacing: .01em;
+    }
+    h2.hotel {
+      font-family: var(--sans);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 22px;
+      letter-spacing: -.01em;
+    }
+    h3.store { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; margin-bottom: 8px; }
+    h3.hotel { font-family: var(--sans); font-size: 1rem; font-weight: 400; letter-spacing: .02em; margin-bottom: 8px; }
+    p { color: var(--mid); margin-bottom: 14px; font-size: .95rem; }
+    .divider-store { width: 36px; height: 1px; background: var(--green); margin-bottom: 26px; }
+    .divider-hotel { width: 36px; height: 1px; background: var(--hotel-grey); margin-bottom: 26px; }
+
+    /* ════════════════════════════════
+       L'EVENTO
+    ════════════════════════════════ */
     #evento { background: var(--white); }
     .evento-grid {
       display: grid;
       grid-template-columns: 5fr 4fr;
-      gap: 80px;
-      align-items: center;
+      gap: 80px; align-items: center;
     }
     .manifesto-block {
-      border-left: 2px solid var(--lav);
+      border-left: 2px solid var(--green);
       padding-left: 28px;
       margin: 28px 0;
     }
     .manifesto-block p {
       font-family: var(--serif);
       font-style: italic;
-      font-size: 1rem;
+      font-size: 1.1rem;
       line-height: 2;
       color: var(--dark);
       margin: 0;
     }
     .evento-img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      object-position: center top;
+      width: 100%; aspect-ratio: 4/5;
+      object-fit: cover; object-position: center top;
     }
 
-    /* ── IL NEGOZIO ── */
+    /* ════════════════════════════════
+       IL NEGOZIO
+    ════════════════════════════════ */
     #negozio {
-      background: var(--lav-pale);
-      position: relative;
-      overflow: hidden;
+      background: var(--cream);
+      position: relative; overflow: hidden;
     }
     #negozio::before {
       content: '';
-      position: absolute;
-      top: -100px; right: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(196,181,212,.3) 0%, transparent 70%);
+      position: absolute; top: -80px; right: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(61,122,88,.07) 0%, transparent 70%);
       pointer-events: none;
     }
     .negozio-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+      gap: 80px; align-items: center;
     }
     .logo-box {
-      text-align: center;
-      padding: 48px;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 56px 48px;
       background: var(--white);
-      border-radius: 2px;
     }
-    .logo-box img {
-      max-width: 260px;
-      width: 100%;
-    }
-    .logo-box .logo-caption {
-      margin-top: 20px;
-      font-size: .75rem;
-      letter-spacing: .14em;
+    .logo-box img { max-width: 240px; width: 100%; }
+    .logo-box .logo-sub {
+      margin-top: 18px;
+      font-family: var(--sans);
+      font-size: .68rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--lav-dk);
+      color: var(--slate);
     }
-    .store-names {
+    .founders {
       display: inline-flex;
-      gap: 8px;
       align-items: center;
-      margin-bottom: 20px;
-      font-size: .78rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--lav-dk);
+      gap: 10px;
+      margin-bottom: 22px;
     }
-    .store-names::before, .store-names::after {
+    .founders span {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--green);
+    }
+    .founders::before, .founders::after {
       content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--lav);
-      width: 24px;
+      width: 28px; height: 1px;
+      background: var(--slate-lt);
     }
 
-    /* ── SHOP ── */
-    #shop { background: var(--cream); }
-    .shop-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-top: 56px;
-    }
-    .shop-card {
-      background: var(--white);
-      overflow: hidden;
-      position: relative;
-    }
+    /* ════════════════════════════════
+       SHOP THE EVENT
+    ════════════════════════════════ */
+    #shop { background: var(--linen); }
+    .shop-intro { max-width: 580px; margin-bottom: 56px; }
+    .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .shop-card { background: var(--white); overflow: hidden; }
     .shop-card-img {
-      width: 100%;
-      aspect-ratio: 3/2;
-      object-fit: cover;
-      object-position: center;
-      display: block;
+      width: 100%; aspect-ratio: 3/2;
+      object-fit: cover; display: block;
       transition: transform .5s ease;
     }
     .shop-card:hover .shop-card-img { transform: scale(1.03); }
-    .shop-card-body {
-      padding: 32px 36px 36px;
-    }
+    .shop-card-body { padding: 32px 36px 36px; }
     .shop-tag {
       display: inline-block;
-      padding: 4px 12px;
-      background: var(--lav-pale);
-      color: var(--lav-dk);
-      font-size: .68rem;
-      letter-spacing: .14em;
+      padding: 3px 12px;
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-family: var(--sans);
+      font-size: .65rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
       margin-bottom: 14px;
     }
-    .shop-card-body h3 { margin-bottom: 10px; }
-    .shop-card-body p { font-size: .92rem; }
     .shop-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 20px;
-      font-size: .75rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--lav-dk);
-      text-decoration: none;
-      border-bottom: 1px solid var(--lav);
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 18px;
+      font-family: var(--sans);
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--green); text-decoration: none;
+      border-bottom: 1px solid rgba(61,122,88,.3);
       padding-bottom: 2px;
-      transition: color .3s, border-color .3s;
+      transition: border-color .3s;
     }
-    .shop-cta:hover { color: var(--dark); border-color: var(--dark); }
+    .shop-cta:hover { border-color: var(--green); }
 
-    /* ── COME FUNZIONA ── */
-    #come-funziona { background: var(--dark); color: var(--white); }
-    #come-funziona .section-label { color: var(--lav); }
-    #come-funziona h2 { color: var(--white); }
-    #come-funziona p { color: rgba(255,255,255,.55); }
-    #come-funziona .divider { background: var(--lav); }
+    /* ════════════════════════════════
+       COME FUNZIONA
+    ════════════════════════════════ */
+    #come-funziona { background: var(--dark); }
+    #come-funziona .label-store { color: rgba(90,154,116,.8); }
+    #come-funziona h2.store { color: var(--white); }
+    #come-funziona p { color: rgba(255,255,255,.45); }
+    #come-funziona .divider-store { background: var(--green); }
     .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      margin-top: 56px;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 2px; margin-top: 56px;
     }
     .step {
-      padding: 40px 32px;
-      border: 1px solid rgba(196,181,212,.12);
-      text-align: center;
+      padding: 40px 28px;
+      border: 1px solid rgba(255,255,255,.06);
       transition: background .3s;
     }
-    .step:hover { background: rgba(196,181,212,.07); }
+    .step:hover { background: rgba(61,122,88,.08); }
     .step-num {
       font-family: var(--serif);
-      font-size: 3rem;
-      color: var(--lav);
-      opacity: .35;
-      line-height: 1;
-      margin-bottom: 20px;
+      font-size: 3.2rem; font-weight: 300;
+      color: var(--green); opacity: .4;
+      line-height: 1; margin-bottom: 18px;
     }
-    .step h3 { color: var(--white); font-size: 1rem; margin-bottom: 10px; }
+    .step h3.store { color: var(--white); font-size: .95rem; }
 
-    /* ── FULL IMAGE BREAK ── */
-    .img-break {
-      height: 55vh;
-      overflow: hidden;
-      position: relative;
-    }
+    /* ════════════════════════════════
+       IMAGE BREAK
+    ════════════════════════════════ */
+    .img-break { height: 55vh; overflow: hidden; position: relative; }
     .img-break img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 40%;
+      object-fit: cover; object-position: center 38%;
     }
     .img-break-caption {
-      position: absolute;
-      bottom: 28px; left: 48px;
-      color: rgba(255,255,255,.65);
-      font-size: .72rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
+      position: absolute; bottom: 28px; left: 48px;
+      font-family: var(--sans);
+      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
     }
 
-    /* ── GALLERY ── */
+    /* ════════════════════════════════
+       GALLERY
+    ════════════════════════════════ */
     #gallery { background: var(--white); }
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 10px;
-      margin-top: 56px;
+      display: grid; grid-template-columns: repeat(12,1fr);
+      gap: 10px; margin-top: 56px;
     }
     .gallery-grid div { overflow: hidden; }
     .gallery-grid img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .5s ease, filter .4s;
+      width: 100%; height: 100%; object-fit: cover; display: block;
       filter: brightness(.96);
+      transition: transform .5s, filter .4s;
     }
     .gallery-grid img:hover { transform: scale(1.04); filter: brightness(1.02); }
     .g1 { grid-column: 1/8;  aspect-ratio: 16/9; }
@@ -434,132 +421,176 @@
     .g6 { grid-column: 1/6;  aspect-ratio: 16/9; }
     .g7 { grid-column: 6/13; aspect-ratio: 16/9; }
 
-    /* ── PARTNER ── */
-    #partner { background: var(--linen); }
-    .partner-intro {
-      max-width: 640px;
-      margin-bottom: 64px;
-    }
-    .benefit-grid {
+    /* ════════════════════════════════
+       HOTEL ANNUNZIATA
+    ════════════════════════════════ */
+    #hotel { background: var(--linen); }
+    .hotel-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .hotel-logo-box {
+      padding: 56px 48px;
+      background: var(--white);
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 24px;
+    }
+    .hotel-logo-box img {
+      max-width: 260px; width: 100%;
+      filter: grayscale(1) brightness(.6);
+    }
+    .hotel-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid var(--hotel-grey);
+      font-family: var(--sans);
+      font-size: .62rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--hotel-grey);
+    }
+    .hotel-perks {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 32px;
+    }
+    .perk {
+      padding: 20px;
+      background: var(--white);
+      border-left: 2px solid var(--hotel-grey);
+    }
+    .perk-icon { font-size: 1.2rem; margin-bottom: 6px; }
+    .perk h4 {
+      font-family: var(--sans); font-size: .8rem; font-weight: 500;
+      letter-spacing: .04em; color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .perk p { font-size: .82rem; margin: 0; }
+    .hotel-cta {
+      display: inline-block; margin-top: 28px;
+      padding: 12px 36px;
+      border: 1px solid var(--hotel-grey);
+      font-family: var(--sans); font-size: .7rem;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--dark); text-decoration: none;
+      transition: background .3s, color .3s;
+    }
+    .hotel-cta:hover { background: var(--hotel-dark); color: var(--white); border-color: var(--hotel-dark); }
+
+    /* ════════════════════════════════
+       PARTNER
+    ════════════════════════════════ */
+    #partner { background: var(--dark); }
+    #partner .label-store { color: rgba(90,154,116,.75); }
+    #partner h2.store { color: var(--white); }
+    #partner p { color: rgba(255,255,255,.45); }
+    #partner .divider-store { background: var(--green); }
+    .benefit-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 2px; margin-top: 56px;
     }
     .benefit {
-      background: var(--white);
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
       padding: 40px 32px;
       transition: background .3s;
     }
-    .benefit:hover { background: var(--lav-pale); }
-    .benefit-icon { font-size: 1.4rem; margin-bottom: 14px; }
-    .benefit h3 { font-size: .95rem; margin-bottom: 8px; }
-    .benefit p  { font-size: .88rem; }
+    .benefit:hover { background: rgba(61,122,88,.08); }
+    .benefit-icon { font-size: 1.3rem; margin-bottom: 14px; }
+    .benefit h3.store { color: var(--white); font-size: 1rem; }
+    .benefit p { font-size: .88rem; }
 
-    /* ── CONTATTI ── */
+    /* ════════════════════════════════
+       CONTATTI
+    ════════════════════════════════ */
     #contatti { background: var(--white); text-align: center; }
-    #contatti h2 { margin-bottom: 14px; }
+    #contatti h2.store { margin-bottom: 14px; }
     #contatti > .container > p {
-      max-width: 500px;
-      margin: 0 auto 56px;
+      max-width: 500px; margin: 0 auto 56px;
     }
     .contact-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      margin-bottom: 56px;
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 2px; margin-bottom: 52px;
     }
-    .contact-box {
-      padding: 36px 24px;
-      background: var(--lav-pale);
-    }
-    .contact-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .contact-box { padding: 36px 24px; background: var(--cream); }
+    .contact-icon { font-size: 1.5rem; margin-bottom: 10px; }
     .contact-box h3 {
-      font-size: .72rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--lav-dk);
-      margin-bottom: 6px;
       font-family: var(--sans);
-      font-weight: 500;
+      font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 6px; font-weight: 500;
     }
     .contact-box a, .contact-box p {
-      font-size: .92rem;
-      color: var(--dark);
-      text-decoration: none;
-      margin: 0;
+      font-size: .9rem; color: var(--dark); text-decoration: none; margin: 0;
     }
-    .contact-box a:hover { color: var(--lav-dk); }
+    .contact-box a:hover { color: var(--green); }
     .cta-btn {
-      display: inline-block;
-      padding: 16px 52px;
-      background: var(--lav-dk);
-      color: var(--white);
+      display: inline-block; padding: 15px 52px;
+      background: var(--green); color: var(--white);
       text-decoration: none;
-      font-size: .78rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
+      font-family: var(--sans); font-size: .75rem;
+      letter-spacing: .18em; text-transform: uppercase;
       transition: background .3s;
     }
-    .cta-btn:hover { background: #7A6A96; }
+    .cta-btn:hover { background: var(--green-lt); }
 
-    /* ── FOOTER ── */
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
     footer {
-      background: var(--dark);
-      padding: 36px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      background: #161412;
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: 24px;
     }
-    footer p {
-      color: rgba(255,255,255,.3);
-      font-size: .72rem;
-      letter-spacing: .08em;
-      margin: 0;
-    }
-    footer .footer-brand {
-      color: rgba(255,255,255,.55);
+    .footer-store {
       font-family: var(--serif);
       font-style: italic;
-      font-size: .85rem;
+      font-size: 1rem; color: rgba(255,255,255,.5);
     }
-    footer .footer-credit {
-      font-size: .65rem;
-      color: rgba(255,255,255,.2);
-      text-align: right;
+    .footer-hash {
+      font-family: var(--sans);
+      font-size: .68rem; letter-spacing: .18em;
+      color: rgba(255,255,255,.2); text-align: center;
+    }
+    .footer-credit {
+      font-family: var(--sans);
+      font-size: .62rem; letter-spacing: .06em;
+      color: rgba(255,255,255,.18); text-align: right;
     }
 
-    /* ── RESPONSIVE ── */
+    /* ════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════ */
     @media (max-width: 960px) {
       nav { padding: 14px 24px; }
       .nav-links { display: none; }
       .container { padding: 0 24px; }
       section { padding: 72px 0; }
-      .evento-grid, .negozio-grid { grid-template-columns: 1fr; gap: 40px; }
+      .evento-grid, .negozio-grid, .hotel-grid { grid-template-columns: 1fr; gap: 40px; }
       .evento-img { aspect-ratio: 16/9; }
-      .logo-box { padding: 32px; }
       .shop-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr 1fr; }
       .benefit-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .g1,.g2,.g3,.g4,.g5,.g6,.g7 { grid-column: auto; aspect-ratio: 4/3; }
       .contact-strip { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; }
-      footer .footer-credit { text-align: center; }
+      .hotel-perks { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; text-align: center; }
+      .footer-credit { text-align: center; }
     }
-    @media (max-width: 540px) {
+    @media (max-width: 560px) {
       .steps { grid-template-columns: 1fr; }
-      .hero-title { font-size: 2.6rem; }
+      .hero-title { font-size: 3rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV ── -->
 <nav id="navbar">
   <a href="#hero" class="nav-brand">
-    <img class="nav-logo-img" src="4643a024-af39-440f-845b-18b118108b3a.jpg" alt="Lasciate Entrare il Sole" />
+    <img class="nav-logo-img" src="logo lasciate entrare il sole.jpg" alt="Lasciate Entrare il Sole" />
     <div class="nav-brand-text">
       <span class="nav-store">Lasciate Entrare il Sole</span>
       <span class="nav-event">presenta · Il Lenzuolo Bianco</span>
@@ -569,18 +600,18 @@
     <li><a href="#evento">L'evento</a></li>
     <li><a href="#negozio">Il negozio</a></li>
     <li><a href="#shop">Shop the event</a></li>
-    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#hotel">Ospitalità</a></li>
     <li><a href="#contatti">Contatti</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- ── HERO ── -->
 <section id="hero">
-  <img class="hero-bg" src="Gemini_Generated_Image_27kvij27kvij27kv.png" alt="Il Lenzuolo Bianco alle mura di Ferrara" />
+  <img class="hero-bg" src="Gemini_Generated_Image_27kvij27kvij27kv.png" alt="Il Lenzuolo Bianco — mura di Ferrara" />
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-presenter">
-      <img src="4643a024-af39-440f-845b-18b118108b3a.jpg" alt="logo" />
+      <img src="logo lasciate entrare il sole.jpg" alt="logo" />
       <span>Lasciate Entrare il Sole presenta</span>
     </div>
     <h1 class="hero-title">Il Lenzuolo<br>Bianco</h1>
@@ -590,14 +621,14 @@
   <div class="scroll-line"></div>
 </section>
 
-<!-- L'EVENTO -->
+<!-- ── L'EVENTO ── -->
 <section id="evento">
   <div class="container">
     <div class="evento-grid">
       <div>
-        <p class="section-label">L'evento</p>
-        <div class="divider"></div>
-        <h2>Un mercoledì sera.<br>Un prato. Un lenzuolo.<br><em>Nient'altro.</em></h2>
+        <p class="label-store">L'evento</p>
+        <div class="divider-store"></div>
+        <h2 class="store">Un mercoledì sera.<br>Un prato. Un lenzuolo.<br><em>Nient'altro.</em></h2>
         <p>Il Lenzuolo Bianco è un evento flash mob gratuito e spontaneo che si tiene ogni mercoledì di giugno all'imbrunire, sul prato del sottomura di Ferrara. Nessun biglietto, nessuna prenotazione, nessun programma.</p>
         <p>Ognuno porta il proprio lenzuolo, qualcosa da bere, qualcosa da mangiare, la propria musica. Si stende sul prato, si incontra il vicino di lenzuolo, si scambia un sorso e una canzone.</p>
         <div class="manifesto-block">
@@ -610,65 +641,65 @@
           Conosci il tuo vicino di lenzuolo.<br><br>
           <strong>Il resto, inventalo.</strong></p>
         </div>
-        <p style="font-size:.85rem; color: var(--lav-dk); margin-top: 8px;">Prima di andare, lascia il posto come lo hai trovato.</p>
+        <p style="font-size:.82rem; color:var(--green);">Prima di andare, lascia il posto come lo hai trovato.</p>
       </div>
-      <div>
-        <img class="evento-img" src="8.png" alt="Il Lenzuolo Bianco — fotografo alle mura" />
-      </div>
+      <img class="evento-img" src="8.png" alt="Il Lenzuolo Bianco — fotografo alle mura" />
     </div>
   </div>
 </section>
 
-<!-- IL NEGOZIO -->
+<!-- ── IL NEGOZIO ── -->
 <section id="negozio">
   <div class="container">
     <div class="negozio-grid">
       <div class="logo-box">
-        <img src="4643a024-af39-440f-845b-18b118108b3a.jpg" alt="Lasciate Entrare il Sole — logo" />
-        <p class="logo-caption">Ferrara · Concept Store</p>
+        <img src="logo lasciate entrare il sole.jpg" alt="Lasciate Entrare il Sole" />
+        <span class="logo-sub">Ferrara · Concept Store</span>
       </div>
       <div>
-        <p class="section-label">Chi organizza</p>
-        <div class="divider"></div>
-        <h2>Lasciate<br>Entrare il Sole.</h2>
-        <div class="store-names">Eleonora &amp; Chiara</div>
+        <p class="label-store">Chi organizza</p>
+        <div class="divider-store"></div>
+        <h2 class="store">Lasciate<br>Entrare il Sole.</h2>
+        <div class="founders"><span>Eleonora &amp; Chiara</span></div>
         <p>Un concept store pensato e creato da due donne, dedicato alle donne. Un luogo dove la cura di sé si intreccia con la bellezza del quotidiano — oggetti scelti con attenzione, materiali naturali, profumi, tessuti, piccoli gesti che diventano rituali.</p>
-        <p>Il Lenzuolo Bianco nasce dalla stessa filosofia del negozio: la semplicità come forma di stile, la condivisione come gesto di cura, la bellezza che non ha bisogno di spiegarsi.</p>
+        <p>Il Lenzuolo Bianco nasce dalla stessa filosofia: la semplicità come forma di stile, la condivisione come gesto di cura, la bellezza che non ha bisogno di spiegarsi.</p>
         <p>L'evento porta nel sottomura di Ferrara l'anima di Lasciate Entrare il Sole — e la porta a chiunque voglia farne parte.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FULL IMAGE BREAK -->
+<!-- ── IMAGE BREAK ── -->
 <div class="img-break">
-  <img src="3.png" alt="Veduta aerea — Il Lenzuolo Bianco alle mura di Ferrara" />
-  <span class="img-break-caption">Sottomura di Ferrara — lenzuola sul prato — giugno 2026</span>
+  <img src="3.png" alt="Veduta aerea — Il Lenzuolo Bianco" />
+  <span class="img-break-caption">Sottomura di Ferrara — giugno 2026</span>
 </div>
 
-<!-- SHOP THE EVENT -->
+<!-- ── SHOP THE EVENT ── -->
 <section id="shop">
   <div class="container">
-    <p class="section-label">Shop the event</p>
-    <div class="divider"></div>
-    <h2>Tutto quello che ti serve<br><em>lo trovi da noi.</em></h2>
-    <p style="max-width:560px">Da Lasciate Entrare il Sole trovi il lenzuolo giusto per la serata — e il look con cui portarlo. Vieni in negozio, racconta come immagini il tuo mercoledì sul prato, e uscirai pronta.</p>
+    <p class="label-store">Shop the event</p>
+    <div class="divider-store"></div>
+    <div class="shop-intro">
+      <h2 class="store">Tutto quello che ti serve<br><em>lo trovi da noi.</em></h2>
+      <p>Da Lasciate Entrare il Sole trovi il lenzuolo giusto per la serata — e il look con cui portarlo. Vieni in negozio, racconta come immagini il tuo mercoledì sul prato, e uscirai pronta.</p>
+    </div>
     <div class="shop-grid">
       <div class="shop-card">
-        <img class="shop-card-img" src="7.png" alt="Lenzuolo di canapa — texture" />
+        <img class="shop-card-img" src="7.png" alt="Lenzuolo di canapa" />
         <div class="shop-card-body">
           <span class="shop-tag">Il lenzuolo</span>
-          <h3>Lenzuola di canapa e lino naturale</h3>
-          <p>Il lenzuolo perfetto per la serata lo trovi da noi. Tessuti naturali, canapa grezza, lino antico. Pezzi selezionati uno a uno — ognuno con la sua storia, ognuno già bello da portare sul prato.</p>
+          <h3 class="store">Lenzuola di canapa e lino naturale</h3>
+          <p>Il lenzuolo perfetto lo trovi da noi. Tessuti naturali, canapa grezza, lino antico. Pezzi selezionati uno a uno — ognuno con la sua storia, ognuno già bello da portare sul prato.</p>
           <a href="#contatti" class="shop-cta">Vieni a sceglierlo →</a>
         </div>
       </div>
       <div class="shop-card">
-        <img class="shop-card-img" src="Gemini_Generated_Image_c2m2vgc2m2vgc2m2.png" alt="Il look per l'evento — Lasciate Entrare il Sole" />
+        <img class="shop-card-img" src="Gemini_Generated_Image_c2m2vgc2m2vgc2m2.png" alt="Il look per l'evento" />
         <div class="shop-card-body">
           <span class="shop-tag">Il look</span>
-          <h3>L'outfit per il tuo mercoledì sera</h3>
-          <p>Colori naturali, tessuti che respirano, uno stile che non si sforza. Da Lasciate Entrare il Sole trovi anche il look pensato per l'evento — comodo, autentico, bello senza esagerare. Come l'idea stessa del Lenzuolo Bianco.</p>
+          <h3 class="store">L'outfit per il tuo mercoledì sera</h3>
+          <p>Colori naturali, tessuti che respirano, uno stile che non si sforza. Da Lasciate Entrare il Sole trovi il look pensato per l'evento — comodo, autentico, bello senza esagerare.</p>
           <a href="#contatti" class="shop-cta">Scopri il negozio →</a>
         </div>
       </div>
@@ -676,43 +707,43 @@
   </div>
 </section>
 
-<!-- COME FUNZIONA -->
+<!-- ── COME FUNZIONA ── -->
 <section id="come-funziona">
   <div class="container">
-    <p class="section-label">Come funziona</p>
-    <div class="divider"></div>
-    <h2>Quattro mosse.<br><em>Una serata che non dimentichi.</em></h2>
+    <p class="label-store">Come funziona</p>
+    <div class="divider-store"></div>
+    <h2 class="store">Quattro mosse.<br><em>Una serata che non dimentichi.</em></h2>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h3>Passa da noi</h3>
+        <h3 class="store">Passa da noi</h3>
         <p>Vieni da Lasciate Entrare il Sole. Scegli il tuo lenzuolo e il tuo look. Esci pronta per il mercoledì.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h3>Ci si ritrova</h3>
+        <h3 class="store">Ci si ritrova</h3>
         <p>Ogni mercoledì di giugno, ore 19.00. Sottomura di Ferrara, prato esterno. Nessuna registrazione.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h3>Ognuna porta il suo</h3>
+        <h3 class="store">Ognuna porta il suo</h3>
         <p>Da bere, da mangiare, musica. Ogni lenzuolo è un mondo. Si condivide con la vicina se si vuole.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <h3>Si lascia tutto com'era</h3>
+        <h3 class="store">Si lascia tutto com'era</h3>
         <p>Prima di andare, il prato viene lasciato esattamente come era. È la regola. Ed è anche il valore.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- ── GALLERY ── -->
 <section id="gallery">
   <div class="container">
-    <p class="section-label">Le immagini</p>
-    <div class="divider"></div>
-    <h2>Un'atmosfera<br><em>che parla da sola.</em></h2>
+    <p class="label-store">Le immagini</p>
+    <div class="divider-store"></div>
+    <h2 class="store">Un'atmosfera<br><em>che parla da sola.</em></h2>
   </div>
   <div class="container">
     <div class="gallery-grid">
@@ -727,41 +758,81 @@
   </div>
 </section>
 
-<!-- PARTNER -->
-<section id="partner">
+<!-- ── HOTEL ANNUNZIATA ── -->
+<section id="hotel">
   <div class="container">
-    <p class="section-label">Per i partner</p>
-    <div class="divider"></div>
-    <div class="partner-intro">
-      <h2>Perché essere parte<br><em>di questo progetto.</em></h2>
-      <p>Il Lenzuolo Bianco non cerca sponsor con banner. Cerca partner che condividano un'identità — semplicità, qualità, cura del bello. Se i tuoi valori parlano questa lingua, c'è un lenzuolo sul prato che ti aspetta.</p>
-    </div>
-    <div class="benefit-grid">
-      <div class="benefit">
-        <div class="benefit-icon">◈</div>
-        <h3>Visibilità autentica</h3>
-        <p>Il tuo brand non interrompe l'esperienza — ne è parte. Sui lenzuoli, nelle mani delle persone, nei contenuti condivisi spontaneamente.</p>
+    <div class="hotel-grid">
+      <div>
+        <p class="label-hotel">Partner ospitalità ufficiale</p>
+        <div class="divider-hotel"></div>
+        <h2 class="hotel">Vieni da fuori Ferrara?<br>Ci pensiamo noi.</h2>
+        <p>Il Lenzuolo Bianco è un'esperienza che vale il viaggio. Hotel Annunziata — nel cuore di Ferrara, a due passi dalle mura — ha riservato una tariffa speciale per chi partecipa all'evento.</p>
+        <p>Arrivi il mercoledì pomeriggio, stai sul prato al tramonto, dormi in centro. Il giorno dopo hai tutta Ferrara per te.</p>
+        <div class="hotel-perks">
+          <div class="perk">
+            <div class="perk-icon">★★★★</div>
+            <h4>4 stelle nel centro storico</h4>
+            <p>A pochi minuti a piedi dalla location dell'evento.</p>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">◻</div>
+            <h4>Tariffa evento riservata</h4>
+            <p>Prenota citando Il Lenzuolo Bianco per la tariffa dedicata.</p>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">◻</div>
+            <h4>Check-in flessibile</h4>
+            <p>Arriva nel pomeriggio, lascia i bagagli, vai sul prato.</p>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">◻</div>
+            <h4>Colazione inclusa</h4>
+            <p>La mattina dopo, Ferrara ti aspetta con calma.</p>
+          </div>
+        </div>
+        <a href="mailto:info@lasciateentrareilsole.it" class="hotel-cta">Richiedi la tariffa evento</a>
       </div>
-      <div class="benefit">
-        <div class="benefit-icon">◈</div>
-        <h3>Contenuto fotografico</h3>
-        <p>Ogni edizione produce materiale visivo straordinario — mura di Ferrara, luce del tramonto, persone reali. Un patrimonio condiviso tra tutti i partner.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">◈</div>
-        <h3>Un format che cresce</h3>
-        <p>Nato a Ferrara, destinato ad espandersi. Essere presenti alla prima edizione significa essere all'inizio di qualcosa.</p>
+      <div class="hotel-logo-box">
+        <img src="logo HOTEL ANNUNZIATA_orizzontale.png" alt="Hotel Annunziata Ferrara" />
+        <span class="hotel-badge">Partner ospitalità ufficiale</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTATTI -->
+<!-- ── PARTNER ── -->
+<section id="partner">
+  <div class="container">
+    <p class="label-store">Per i partner</p>
+    <div class="divider-store"></div>
+    <h2 class="store" style="max-width:520px">Perché essere parte<br><em>di questo progetto.</em></h2>
+    <p style="max-width:540px; margin-bottom:0">Il Lenzuolo Bianco non cerca sponsor con banner. Cerca partner che condividano un'identità — semplicità, qualità, cura del bello. Se i tuoi valori parlano questa lingua, c'è un lenzuolo sul prato che ti aspetta.</p>
+    <div class="benefit-grid">
+      <div class="benefit">
+        <div class="benefit-icon">◈</div>
+        <h3 class="store">Visibilità autentica</h3>
+        <p>Il tuo brand non interrompe l'esperienza — ne è parte. Sui lenzuoli, nelle mani delle persone, nei contenuti condivisi spontaneamente.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">◈</div>
+        <h3 class="store">Contenuto fotografico</h3>
+        <p>Ogni edizione produce materiale visivo straordinario — mura di Ferrara, luce del tramonto, persone reali. Un patrimonio condiviso tra tutti i partner.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">◈</div>
+        <h3 class="store">Un format che cresce</h3>
+        <p>Nato a Ferrara, destinato ad espandersi. Essere presenti alla prima edizione significa essere all'inizio di qualcosa che può andare ovunque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTATTI ── -->
 <section id="contatti">
   <div class="container">
-    <p class="section-label">Scrivici</p>
-    <div class="divider" style="margin: 0 auto 28px;"></div>
-    <h2>Vuoi essere parte<br><em>del Lenzuolo Bianco?</em></h2>
+    <p class="label-store">Scrivici</p>
+    <div class="divider-store" style="margin: 0 auto 28px;"></div>
+    <h2 class="store">Vuoi essere parte<br><em>del Lenzuolo Bianco?</em></h2>
     <p>Che tu voglia portare il tuo lenzuolo sul prato, collaborare come partner, o semplicemente saperne di più — siamo qui.</p>
     <div class="contact-strip">
       <div class="contact-box">
@@ -784,15 +855,11 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer>
-  <p class="footer-brand">Lasciate Entrare il Sole · Ferrara</p>
-  <p style="color:rgba(255,255,255,.2); font-size:.65rem; letter-spacing:.06em">
-    #illenznuolobianco
-  </p>
-  <p class="footer-credit">
-    Il Lenzuolo Bianco è un progetto ideato da Zeno Govoni
-  </p>
+  <span class="footer-store">Lasciate Entrare il Sole · Ferrara</span>
+  <span class="footer-hash">#illenznuolobianco</span>
+  <span class="footer-credit">Il Lenzuolo Bianco è un progetto ideato da Zeno Govoni</span>
 </footer>
 
 <script>
